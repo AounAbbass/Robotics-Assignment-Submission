@@ -1,0 +1,165 @@
+#VRML_SIM R2023a utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/robotstadium/protos/RobotstadiumSoccerField.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/balls/protos/FifaSoccerBall.proto"
+
+WorldInfo {
+}
+Viewpoint {
+  orientation -0.128877121582615 0.6478539342592489 0.7507835689447345 0.5180208742446635
+  position -4.760866108200441 -2.6996418758290806 1.908707793779835
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RobotstadiumSoccerField {
+}
+Robot {
+  translation -0.5294925957912974 -0.6919845924369858 3.375563300862111e-05
+  rotation -0.010358720934079014 -0.025241385750643025 0.9996277153750776 2.351837914177354
+  children [
+    DEF Body Transform {
+      translation 0 0 0.0415
+      rotation 0 1 0 0
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0 1 0
+            roughness 1
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.08
+            radius 0.045
+          }
+        }
+      ]
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 227.3230843898939
+        anchor 0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_1"
+        }
+      ]
+      endPoint Solid {
+        translation 0.045 0 0.025
+        rotation 0.4718495975972865 0.7450303510325056 0.4714740006486684 1.8602036520613172
+        children [
+          DEF wheel Shape {
+            appearance PBRAppearance {
+              baseColor 0 0 1
+              roughness 1
+              metalness 0
+            }
+            geometry Cylinder {
+              height 0.01
+              radius 0.025
+            }
+          }
+        ]
+        boundingObject USE wheel
+        physics DEF wheel_physics Physics {
+        }
+        linearVelocity 0.1442581394874788 0.14288290447088603 1.4574209154315232e-05
+        angularVelocity -5.716115429288163 5.7701173894407205 0.0018055873393591328
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 298.3597332509479
+        anchor -0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_2"
+        }
+      ]
+      endPoint Solid {
+        translation -0.045 0 0.025
+        rotation -0.7070176284577214 -0.03236724498955823 -0.7064548354295589 3.2063560679839807
+        children [
+          USE wheel
+        ]
+        name "solid(1)"
+        boundingObject USE wheel
+        physics USE wheel_physics
+        linearVelocity 0.14411190974250074 0.14303139423267353 6.604750546818387e-06
+        angularVelocity -5.720837085227651 5.765436969048444 0.006284824058070721
+      }
+    }
+    Solid {
+      translation 0.015 -0.05 0.065
+      rotation 0 1 0 -1.5707903061004251
+      children [
+        DEF eye Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 1
+            roughness 1
+            metalness 0
+          }
+          geometry Box {
+            size 0.005 0.005 0.005
+          }
+        }
+      ]
+      name "solid(2)"
+    }
+    Solid {
+      translation -0.015 -0.05 0.065
+      children [
+        USE eye
+      ]
+      name "solid(3)"
+    }
+    Solid {
+      children [
+        HingeJoint {
+          jointParameters HingeJointParameters {
+          }
+          endPoint Camera {
+            translation -3.05884e-08 -5.19723e-15 0.107
+            rotation 0 0 -1 1.309
+            children [
+              Shape {
+                appearance PBRAppearance {
+                  baseColor 0 0 1
+                  roughness 1
+                  metalness 0
+                }
+                geometry Cone {
+                  bottomRadius 0.0075
+                  height 0.05
+                }
+              }
+            ]
+            width 250
+            height 125
+            recognition Recognition {
+            }
+          }
+        }
+      ]
+      name "solid(4)"
+    }
+  ]
+  boundingObject USE Body
+  physics Physics {
+  }
+  controller "controller_drive_diff_drive_robot"
+  linearVelocity 0.14559439309022765 0.14445843370157502 -0.0011680512297819914
+  angularVelocity -0.0874541961853208 0.08520967656581369 0.00027871689063635897
+}
+FifaSoccerBall {
+  hidden linearVelocity_0 -0.030151291604848043 -0.006263376856777191 2.6709138414619037e-13
+  hidden angularVelocity_0 0.08947681223967416 -0.4307327372121149 -0.21093944634438533
+  translation -0.38786105865479575 -0.46090778155400813 0.0696782319999659
+  rotation 0.8739996324725455 0.32067270677870446 0.36509403934476176 2.453810129526673
+  size 1
+}
